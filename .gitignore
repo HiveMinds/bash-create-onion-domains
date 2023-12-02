@@ -1,0 +1,5 @@
+test/libs/*
+coverage/*
+dependencies/*
+tor_log.txt
+log/multiple-outputs.txt
