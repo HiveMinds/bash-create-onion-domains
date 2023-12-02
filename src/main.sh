@@ -21,3 +21,4 @@ function load_functions() {
 
 }
 load_functions
+create_new_random_onion_domain_for_ssh
