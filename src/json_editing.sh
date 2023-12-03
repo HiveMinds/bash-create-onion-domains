@@ -6,7 +6,7 @@ function load_json_from_file() {
 
   # Load the json filecontent.
   if [ -f "$json_filepath" ]; then
-    cat "$json_filepath"
+    echo "$(cat "$json_filepath")"
   fi
 }
 
