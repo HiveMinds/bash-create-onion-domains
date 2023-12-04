@@ -18,6 +18,12 @@ function load_functions() {
   source "$script_dir/GLOBAL_VARS.sh"
 
   # shellcheck disable=SC1091
+  source "$script_dir/configuration.sh"
+
+  # shellcheck disable=SC1091
+  source "$script_dir/parse_bash_onion_domains.sh"
+
+  # shellcheck disable=SC1091
   source "$script_dir/ssh/create_onion_domain_dash.sh"
 
   # shellcheck disable=SC1091
@@ -31,4 +37,4 @@ function load_functions() {
 
 }
 load_functions
-create_new_random_onion_domain_for_ssh
+setup_onion_domain "$@"

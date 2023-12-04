@@ -63,3 +63,14 @@ function write_json_to_torrc() {
   NOTICE "Wrote torrc_content to $torrc_output_filepath"
   NOTICE "Its content is:\n$(cat "$torrc_output_filepath")"
 }
+
+function set_user_permissions_on_torrc_file_and_json_torrc() {
+
+  assert_is_non_empty_string "$TORRC_FILEPATH"
+  assert_is_non_empty_string "$TORRC_JSON_FILEPATH"
+  sudo touch "$TORRC_FILEPATH"
+  sudo touch "$TORRC_JSON_FILEPATH"
+
+  sudo chmod 777 "$TORRC_FILEPATH"
+  sudo chmod 777 "$TORRC_JSON_FILEPATH"
+}

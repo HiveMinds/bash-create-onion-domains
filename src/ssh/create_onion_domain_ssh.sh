@@ -14,8 +14,6 @@ function create_new_random_onion_domain_for_ssh() {
   assert_is_non_empty_string "$PUBLIC_SSH_PORT"
   assert_is_non_empty_string "$LOCAL_SSH_PORT"
 
-  set_user_permissions_on_torrc_file_and_json_torrc
-
   # Add or overwrite SSH service to torrc json.
   project_name="ssh"
   directory="$TOR_SERVICE_DIR/$project_name"
@@ -31,26 +29,15 @@ function create_new_random_onion_domain_for_ssh() {
   ensure_onion_domain_is_created_by_starting_tor "ssh"
 }
 
-function set_user_permissions_on_torrc_file_and_json_torrc() {
-
-  assert_is_non_empty_string "$TORRC_FILEPATH"
-  assert_is_non_empty_string "$TORRC_JSON_FILEPATH"
-  sudo touch "$TORRC_FILEPATH"
-  sudo touch "$TORRC_JSON_FILEPATH"
-
-  sudo chmod 777 "$TORRC_FILEPATH"
-  sudo chmod 777 "$TORRC_JSON_FILEPATH"
-}
-
 function create_new_seeded_onion_domain_for_ssh() {
-  local private_seed="$1"
-  ERROR "TODO: implement create_new_seeded_onion_domain for ssh, private_seed=$private_seed"
+  local private_seed_filepath="$1"
+  ERROR "TODO: implement create_new_seeded_onion_domain for ssh, private_seed_filepath=$private_seed_filepath"
   exit 1
 }
 
 function restore_previous_onion_domain_for_ssh() {
-  local previous_onion_private_key="$1"
-  ERROR "TODO: implement restore_previous_onion_domain for ssh, previous_onion_private_key=$previous_onion_private_key"
+  local previous_onion_private_key_filepath="$1"
+  ERROR "TODO: implement restore_previous_onion_domain for ssh, previous_onion_private_key=$previous_onion_private_key_filepath"
   exit 1
 }
 
