@@ -14,7 +14,7 @@ fi
 
 # Store arguments and then consume them to prevent the $@ argument from being
 # parsed in the wrong parser that is loaded through another main.sh file.
-CLI_ARGS=("$@")
+CLI_ARGS_CREATE_ONION_DOMAINS=("$@")
 while [ "$#" -gt 0 ]; do
   shift # Shift the arguments to move to the next one
 done
@@ -47,4 +47,4 @@ function load_functions() {
 
 }
 load_functions
-setup_onion_domain "${CLI_ARGS[@]}"
+setup_onion_domain "${CLI_ARGS_CREATE_ONION_DOMAINS[@]}"
