@@ -12,6 +12,13 @@ if [ -f "dependencies/bash-ssh-over-tor/src/main.sh" ]; then
   source dependencies/bash-ssh-over-tor/src/main.sh
 fi
 
+# Store arguments and then consume them to prevent the $@ argument from being
+# parsed in the wrong parser that is loaded through another main.sh file.
+CLI_ARGS=("$@")
+while [ "$#" -gt 0 ]; do
+  shift # Shift the arguments to move to the next one
+done
+
 # Load prerequisites installation.
 function load_functions() {
   local script_dir
@@ -40,4 +47,4 @@ function load_functions() {
 
 }
 load_functions
-setup_onion_domain "$@"
+setup_onion_domain "${CLI_ARGS[@]}"
