@@ -7,7 +7,7 @@ Sets up an onion domain for:
 - Dash plots
 - ..
 
-## Usage
+## Creating Onion Domains
 
 ```sh
 git clone https://github.com/HiveMinds/bash-ssh-over-tor.git
@@ -16,13 +16,28 @@ chmod +x install-dependencies.sh
 ./install-dependencies.sh
 
 chmod +x src/main.sh
-src/main.sh --ssh
+src/main.sh --ssh --random
 ```
 
-Or to create an onion domain for a dash website/plot:
+To generate a random new onion domain for the ssh service. Or to create an
+onion domain for a dash website/plot:
 
 ```sh
-src/main.sh --dash
+src/main.sh --dash --random
+```
+
+### Reading Onion Domains
+
+To see what the actual onion domain is, run:
+
+```sh
+src/main.sh --<your service> --get-onion
+```
+
+Like:
+
+```sh
+src/main.sh --ssh --get-onion
 ```
 
 ## Developer Information
