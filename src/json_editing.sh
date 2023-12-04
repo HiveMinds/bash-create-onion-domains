@@ -69,6 +69,11 @@ function add_or_update_project_in_json() {
     exit 1
   fi
   NOTICE "Checked torrc_json_input_path"
+  # If the torrc_json_input_path file does not exist, create it.
+  if [ ! -f "$torrc_json_input_path" ]; then
+    NOTICE "torrc_json_input_path does not exist, creating it."
+    sudo touch "$torrc_json_input_path"
+  fi
   manual_assert_file_exists "$torrc_json_input_path"
 
   # TODO: specify jsonfilepath
@@ -84,7 +89,9 @@ function add_or_update_project_in_json() {
   actual_merged_json="$(add_or_overwrite_torrc_json_project "$existing_json" "$new_torrc_json_project")"
 
   echo "$actual_merged_json" >"$torrc_json_output_path"
+  #sudo sh -c "echo \"$actual_merged_json\" > \"$torrc_json_output_path\""
 
   manual_assert_file_exists "$torrc_json_output_path"
+
   # TODO: assert file content of torrc_json_output_path equals actual_merged_json.
 }

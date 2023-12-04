@@ -1,8 +1,31 @@
 #!/bin/bash
 create_new_random_onion_domain_for_ssh() {
-  NOTICE "TODO: implement create_new_random_onion_domain for ssh"
 
-  add_service_to_torrc "$project_name" "$local_project_port" "$public_port_to_access_onion"
+  NOTICE "TOR_SERVICE_DIR=$TOR_SERVICE_DIR"
+  NOTICE "TORRC_FILEPATH=$TORRC_FILEPATH"
+  NOTICE "TORRC_JSON_FILEPATH=$TORRC_JSON_FILEPATH"
+  NOTICE "PUBLIC_SSH_PORT=$PUBLIC_SSH_PORT"
+  NOTICE "LOCAL_SSH_PORT=$LOCAL_SSH_PORT"
+
+  # Verify all global variables are loaded as non-empty.
+  assert_is_non_empty_string "$TOR_SERVICE_DIR"
+  assert_is_non_empty_string "$TORRC_FILEPATH"
+  assert_is_non_empty_string "$TORRC_JSON_FILEPATH"
+  assert_is_non_empty_string "$PUBLIC_SSH_PORT"
+  assert_is_non_empty_string "$LOCAL_SSH_PORT"
+
+  # Add or overwrite SSH service to torrc json.
+  project_name="ssh"
+  directory="$TOR_SERVICE_DIR/$project_name"
+  public_port="$PUBLIC_SSH_PORT"
+  local_port="$LOCAL_SSH_PORT"
+
+  # Add or overwrite the SSH service project data in the torrc.json file.
+  add_or_update_project_in_json "$TORRC_JSON_FILEPATH" "$TORRC_JSON_FILEPATH" "$project_name" "$directory" "$public_port" "$local_port"
+
+  # Write torrc json to torrc file.
+  write_json_to_torrc "$TORRC_JSON_FILEPATH" "$TORRC_FILEPATH"
+
   ensure_onion_domain_is_created_by_starting_tor "ssh"
 }
 

@@ -17,3 +17,6 @@
 [submodule "dependencies/bash-start-tor-at-boot"]
 	path = dependencies/bash-start-tor-at-boot
 	url = https://github.com/hiveminds/bash-start-tor-at-boot
+[submodule "dependencies/bash-ssh-over-tor"]
+	path = dependencies/bash-ssh-over-tor
+	url = https://github.com/hiveminds/bash-ssh-over-tor

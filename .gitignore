@@ -3,3 +3,4 @@ coverage/*
 dependencies/*
 tor_log.txt
 log/multiple-outputs.txt
+test/test_jsons_write/*
