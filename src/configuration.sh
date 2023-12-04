@@ -9,8 +9,10 @@ function setup_onion_domain() {
   mapfile -t parsed_args < <(parse_bash_onion_domains "$@")
   local setup_ssh_service="${parsed_args[0]}"
   local setup_dash_service="${parsed_args[1]}"
-  local private_seed_filepath="${parsed_args[2]}"
-  local private_key_filepath="${parsed_args[3]}"
+  local get_onion_domain="${parsed_args[2]}"
+  local random_domain="${parsed_args[3]}"
+  local private_seed_filepath="${parsed_args[4]}"
+  local private_key_filepath="${parsed_args[5]}"
 
   if [ "$setup_ssh_service" == "true" ]; then
 
@@ -18,8 +20,11 @@ function setup_onion_domain() {
       create_new_seeded_onion_domain_for_ssh "$private_seed_filepath"
     elif [ "$private_key_filepath" != "" ]; then
       restore_previous_onion_domain_for_ssh "$private_key_filepath"
-    else
+    elif [ "$random_domain" == "true" ]; then
       create_new_random_onion_domain_for_ssh
+    fi
+    if [ "$get_onion_domain" == "true" ]; then
+      get_onion_domain "ssh"
     fi
   fi
 
@@ -28,11 +33,11 @@ function setup_onion_domain() {
       create_new_seeded_onion_domain_for_dash "$private_seed_filepath"
     elif [ "$private_key_filepath" != "" ]; then
       restore_previous_onion_domain_for_dash "$private_key_filepath"
-    else
+    elif [ "$random_domain" == "true" ]; then
       create_new_random_onion_domain_for_dash
     fi
+    if [ "$get_onion_domain" == "true" ]; then
+      get_onion_domain "dash"
+    fi
   fi
-
-  # TODO: Return the onion domain of Follower back into Leader.
-  echo "Done creating onion domains."
 }

@@ -3,11 +3,13 @@
 parse_bash_onion_domains() {
   local setup_ssh_service="false"
   local setup_dash_service="false"
+  local get_onion_domain="false"
+  local random_domain="false"
   local private_seed_filepath=""
   local private_key_filepath=""
 
   # Parse long options using getopt
-  OPTS=$(getopt -o s:k:ssh:dash --long seed-path:,key-path:,ssh,dash -n 'parse-options' -- "$@")
+  OPTS=$(getopt -o s:k:go:r:ssh:dash --long seed-path:,key-path:,get-onion,random-domain,ssh,dash -n 'parse-options' -- "$@")
   # shellcheck disable=SC2181
   if [ $? != 0 ]; then
     echo "Failed parsing options." >&2
@@ -24,6 +26,14 @@ parse_bash_onion_domains() {
         ;;
       -dash | --dash)
         setup_dash_service="true"
+        shift
+        ;;
+      -go | --get-onion)
+        get_onion_domain="true"
+        shift
+        ;;
+      -r | --random-domain)
+        random_domain="true"
         shift
         ;;
       -s | --seed-path)
@@ -49,6 +59,8 @@ parse_bash_onion_domains() {
 
   echo "$setup_ssh_service"
   echo "$setup_dash_service"
+  echo "$get_onion_domain"
+  echo "$random_domain"
   echo "$private_seed_filepath"
   echo "$private_key_filepath"
 }
