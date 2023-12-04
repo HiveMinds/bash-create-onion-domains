@@ -3,11 +3,14 @@
 # Load the installer dependency.
 source dependencies/bash-package-installer/src/main.sh
 source dependencies/bash-log/src/main.sh
-source dependencies/bash-ssh-over-tor/src/main.sh
 source dependencies/bash-start-tor-at-boot/src/main.sh
 source dependencies/bash-start-tor-at-boot/src/GLOBAL_VARS.sh # Superfluous
 LOG_LEVEL_ALL                                                 # set log level to all, otherwise, NOTICE, INFO, DEBUG, TRACE will not be logged.
 B_LOG --file log/multiple-outputs.txt --file-prefix-enable --file-suffix-enable
+
+if [ -f "dependencies/bash-ssh-over-tor/src/main.sh" ]; then
+  source dependencies/bash-ssh-over-tor/src/main.sh
+fi
 
 # Load prerequisites installation.
 function load_functions() {
