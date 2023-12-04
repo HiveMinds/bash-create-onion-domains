@@ -10,6 +10,40 @@ LOG_LEVEL_ALL
 source "src/json_editing.sh"
 
 # Describe block for testing the change_color function
+@test "Test add a project to an empty json." {
+
+  # Create a new json project entry.
+  local project_name="new_project_name"
+  local directory="new_directory"
+  local public_port=321
+  local local_port=123
+  local new_json
+  new_json="$(create_new_torrc_json_entry "$project_name" "$directory" "$public_port" "$local_port")"
+
+  # Add the new json to the single_entry json.
+  actual_merged_json="$(add_or_overwrite_torrc_json_project "" "$new_json")"
+  expected_merged_json=$(
+    cat <<EOF
+{
+  "new_project_name": {
+    "dir": "new_directory",
+    "public_port": 321,
+    "local_port": 123
+  }
+}
+EOF
+  )
+
+  if [ "$actual_merged_json" != "$expected_merged_json" ]; then
+    NOTICE "actual_merged_json:   $actual_merged_json"
+    NOTICE "expected_merged_json: $expected_merged_json"
+    NOTICE "Assert output:\n\n"
+  fi
+
+  assert_equal "$actual_merged_json" "$expected_merged_json"
+}
+
+# Describe block for testing the change_color function
 @test "Test add a project to the single_entry json." {
 
   # Load the original single json.

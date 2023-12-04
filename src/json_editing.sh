@@ -45,9 +45,14 @@ function add_or_overwrite_torrc_json_project() {
   local existing_json="$1" # Assuming existing_json is passed as an argument
   local new_project="$2"
 
-  local updated_json
-  updated_json=$(echo "$existing_json" | jq --argjson new_proj "$new_project" '. + $new_proj')
-  echo "$updated_json"
+  if [ "$existing_json" == "" ]; then
+    assert_is_non_empty_string "$new_project"
+    echo "$new_project"
+  else
+    local updated_json
+    updated_json=$(echo "$existing_json" | jq --argjson new_proj "$new_project" '. + $new_proj')
+    echo "$updated_json"
+  fi
 }
 
 # Function to manage adding/updating project details in JSON
@@ -79,11 +84,13 @@ function add_or_update_project_in_json() {
   # TODO: specify jsonfilepath
   local existing_json
   existing_json="$(load_json_from_file "$torrc_json_input_path")"
-  NOTICE "existing_json: $existing_json"
+  NOTICE "existing_json:$existing_json"
 
   # Create the new project entry.
   local new_torrc_json_project
   new_torrc_json_project="$(create_new_torrc_json_entry "$project_name" "$directory" "$public_port" "$local_port")"
+  NOTICE "new_torrc_json_project:$new_torrc_json_project"
+  assert_is_non_empty_string "$new_torrc_json_project"
 
   # Add or overwrite the project entry in the torrc.json file.
   actual_merged_json="$(add_or_overwrite_torrc_json_project "$existing_json" "$new_torrc_json_project")"
