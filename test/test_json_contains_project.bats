@@ -7,14 +7,10 @@ source dependencies/bash-log/src/main.sh
 LOG_LEVEL_ALL
 
 # Load the script that contains the function to be tested
-#load colors.sh
+source "src/json_editing.sh"
 
 # Describe block for testing the change_color function
 @test "Test single_entry json contains project ssh." {
-
-  # Load the function that is to be tested.
-  # shellcheck disable=SC1091
-  source "src/json_editing.sh"
 
   tested_project_name="ssh"
   # Call load_json function.
@@ -31,10 +27,6 @@ LOG_LEVEL_ALL
 
 @test "Test single_entry json does not contain project somename." {
 
-  # Load the function that is to be tested.
-  # shellcheck disable=SC1091
-  source "src/json_editing.sh"
-
   tested_project_name="somename"
   # Call load_json function.
   single_json="$(load_json_from_file "test/test_jsons_read/single_entry.json")"
@@ -49,11 +41,6 @@ LOG_LEVEL_ALL
 }
 
 @test "Test triple_entry json contains project another_project." {
-
-  # Load the function that is to be tested.
-  # shellcheck disable=SC1091
-  source "src/json_editing.sh"
-
   tested_project_name="another_project"
   # Call load_json function.
   triple_json="$(load_json_from_file "test/test_jsons_read/triple_entry.json")"
@@ -68,10 +55,6 @@ LOG_LEVEL_ALL
 }
 
 @test "Test triple_entry json contains project ssh." {
-
-  # Load the function that is to be tested.
-  # shellcheck disable=SC1091
-  source "src/json_editing.sh"
 
   tested_project_name="ssh"
   # Call load_json function.
@@ -88,10 +71,6 @@ LOG_LEVEL_ALL
 
 @test "Test triple_entry json contains project dash." {
 
-  # Load the function that is to be tested.
-  # shellcheck disable=SC1091
-  source "src/json_editing.sh"
-
   tested_project_name="dash"
   # Call load_json function.
   triple_json="$(load_json_from_file "test/test_jsons_read/triple_entry.json")"
@@ -106,10 +85,6 @@ LOG_LEVEL_ALL
 }
 
 @test "Test single_entry json does not contain project thisprojectdoesnotexist." {
-
-  # Load the function that is to be tested.
-  # shellcheck disable=SC1091
-  source "src/json_editing.sh"
 
   tested_project_name="thisprojectdoesnotexist"
   # Call load_json function.

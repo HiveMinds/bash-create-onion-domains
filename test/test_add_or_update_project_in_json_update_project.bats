@@ -3,19 +3,16 @@
 load 'libs/bats-support/load'
 load 'libs/bats-assert/load'
 
+source dependencies/bash-ssh-over-tor/src/main.sh
+source dependencies/bash-start-tor-at-boot/src/main.sh
 source dependencies/bash-log/src/main.sh
 LOG_LEVEL_ALL
 
 # Load the script that contains the function to be tested
-#load colors.sh
+source "src/json_editing.sh"
 
 # Describe block for testing the change_color function
 @test "Test add a project to the single_entry json." {
-  # Load the function that is to be tested.
-  # shellcheck disable=SC1091
-  source "src/json_editing.sh"
-  # shellcheck disable=SC1091
-  source dependencies/bash-start-tor-at-boot/src/main.sh
 
   # Load the original single json.
   json_input_path="test/test_jsons_read/single_entry.json"
@@ -59,12 +56,6 @@ EOF
 
 # Describe block for testing the change_color function
 @test "Test add a project to the triple_entry json." {
-
-  # Load the function that is to be tested.
-  # shellcheck disable=SC1091
-  source "src/json_editing.sh"
-  # shellcheck disable=SC1091
-  source dependencies/bash-start-tor-at-boot/src/main.sh
 
   # Load the original triple json.
   json_input_path="test/test_jsons_read/triple_entry.json"

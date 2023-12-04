@@ -7,11 +7,11 @@ source dependencies/bash-log/src/main.sh
 source dependencies/bash-ssh-over-tor/src/main.sh
 LOG_LEVEL_ALL
 
+# Load the function that is to be tested.
+source "src/json_to_torrc.sh"
+
 # Describe block for testing the change_color function
 @test "Test convert json to torrc lines." {
-  # Load the function that is to be tested.
-  # shellcheck disable=SC1091
-  source "src/json_to_torrc.sh"
 
   input_json=$(
     cat <<EOF

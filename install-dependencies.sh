@@ -28,5 +28,5 @@ git submodule add --force https://github.com/hiveminds/bash-ssh-over-tor depende
 git submodule update --remote --recursive
 
 # Remove the submodules from the index.
-git rm -r --cached test/libs/bats
-git rm -r --cached dependencies
+git rm -r -f --cached test/libs/bats
+git rm -r -f --cached dependencies

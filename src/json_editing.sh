@@ -87,11 +87,13 @@ function add_or_update_project_in_json() {
 
   # Add or overwrite the project entry in the torrc.json file.
   actual_merged_json="$(add_or_overwrite_torrc_json_project "$existing_json" "$new_torrc_json_project")"
+  assert_is_non_empty_string "$actual_merged_json"
 
   echo "$actual_merged_json" >"$torrc_json_output_path"
   #sudo sh -c "echo \"$actual_merged_json\" > \"$torrc_json_output_path\""
 
   manual_assert_file_exists "$torrc_json_output_path"
 
-  # TODO: assert file content of torrc_json_output_path equals actual_merged_json.
+  # Assert file content of torrc_json_output_path equals actual_merged_json.
+  assert_file_content_equal "$torrc_json_output_path" "$actual_merged_json"
 }

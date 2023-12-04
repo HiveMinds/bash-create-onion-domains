@@ -50,6 +50,7 @@ function write_json_to_torrc() {
   json_content="$(load_json_from_file "$json_input_filepath")"
   NOTICE "Read json_content from $json_input_filepath"
   NOTICE "json_content=\n$json_content"
+  assert_is_non_empty_string "$json_content"
 
   local torrc_content
   torrc_content="$(convert_projects_to_torrc "$json_content")"

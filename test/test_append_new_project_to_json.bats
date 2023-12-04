@@ -7,14 +7,10 @@ source dependencies/bash-log/src/main.sh
 LOG_LEVEL_ALL
 
 # Load the script that contains the function to be tested
-#load colors.sh
+source "src/json_editing.sh"
 
 # Describe block for testing the change_color function
 @test "Test add a project to the single_entry json." {
-
-  # Load the function that is to be tested.
-  # shellcheck disable=SC1091
-  source "src/json_editing.sh"
 
   # Load the original single json.
   single_json="$(load_json_from_file "test/test_jsons_read/single_entry.json")"
@@ -57,11 +53,6 @@ EOF
 
 # Describe block for testing the change_color function
 @test "Test add a project to the triple_entry json." {
-
-  # Load the function that is to be tested.
-  # shellcheck disable=SC1091
-  source "src/json_editing.sh"
-
   # Load the original triple json.
   triple_json="$(load_json_from_file "test/test_jsons_read/triple_entry.json")"
 

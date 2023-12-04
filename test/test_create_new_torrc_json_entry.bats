@@ -7,15 +7,10 @@ source dependencies/bash-log/src/main.sh
 LOG_LEVEL_ALL
 
 # Load the script that contains the function to be tested
-#load colors.sh
+source "src/json_editing.sh"
 
 # Describe block for testing the change_color function
 @test "Test create a new single entry json." {
-
-  # Load the function that is to be tested.
-  # shellcheck disable=SC1091
-  source "src/json_editing.sh"
-
   # Call load_json function.
   expected_json=$(
     cat <<EOF
