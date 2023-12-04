@@ -1,6 +1,7 @@
-test/libs/*
+test/test_jsons_write/*
 coverage/*
 dependencies/*
 tor_log.txt
 log/multiple-outputs.txt
-test/test_jsons_write/*
+automated-pip-venv/*
+test/libs/*
