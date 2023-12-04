@@ -17,7 +17,7 @@ LOG_LEVEL_ALL
   source "src/json_editing.sh"
 
   # Call load_json function.
-  single_json="$(load_json_from_file "test/test_jsons/single_entry.json")"
+  single_json="$(load_json_from_file "test/test_jsons_read/single_entry.json")"
   expected_json=$(
     cat <<EOF
 {
@@ -43,7 +43,7 @@ EOF
   source "src/json_editing.sh"
 
   # Call load_json function.
-  single_json="$(load_json_from_file "test/test_jsons/triple_entry.json")"
+  single_json="$(load_json_from_file "test/test_jsons_read/triple_entry.json")"
   expected_json=$(
     cat <<EOF
 {

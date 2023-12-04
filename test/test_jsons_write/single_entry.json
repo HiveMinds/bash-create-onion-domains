@@ -1,0 +1,7 @@
+{
+  "ssh": {
+    "dir": "new_directory",
+    "local_port": 123,
+    "public_port": 321
+  }
+}
