@@ -1,5 +1,5 @@
 #!/bin/bash
-
+export bash_create_onion_domains_is_loaded=true
 # This module is a dependency for:
 CREATE_ONION_DOMAINS_PARENT_DEPS=("bash-ssh-over-tor")
 # This module has dependencies:
