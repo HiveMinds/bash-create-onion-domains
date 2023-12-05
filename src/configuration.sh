@@ -11,11 +11,6 @@ function setup_onion_domain() {
   local random_domain="${parsed_args[3]}"
   local private_seed_filepath="${parsed_args[4]}"
   local private_key_filepath="${parsed_args[5]}"
-  # Check if there are any arguments in parsed_args that are not empty strings.
-  if [ "$(array_contains_non_empty_string "${parsed_args[@]}")" == "true" ]; then
-    echo "ERROR: There are arguments that are not empty strings."
-    exit 1
-  fi
 
   # Check if a CLI argument is given.
   found_non_empty_string=false
