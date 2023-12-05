@@ -5,11 +5,11 @@ CREATE_ONION_DOMAINS_PARENT_DEPS=("bash-ssh-over-tor")
 # This module has dependencies:
 CREATE_ONION_DOMAINS_REQUIRED_DEPS=("bash-log" "bash-package-installer" "bash-start-tor-at-boot")
 
-CREATE_ONION_DOMAINS_SRC_PATH=$(dirname "$(readlink -f "$0")")
+CREATE_ONION_DOMAINS_SRC_PATH=$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")
 CREATE_ONION_DOMAINS_PATH=$(readlink -f "$CREATE_ONION_DOMAINS_SRC_PATH/../")
 
 # Loads the bash log dependency, and the dependency loader.
-function load_bash_log_dependency() {
+function load_dependency_manager() {
   if [ -d "$CREATE_ONION_DOMAINS_PATH/dependencies/bash-log" ]; then
     # shellcheck disable=SC1091
     source "$CREATE_ONION_DOMAINS_PATH/dependencies/bash-log/src/main.sh"
@@ -21,7 +21,7 @@ function load_bash_log_dependency() {
     exit 1
   fi
 }
-load_bash_log_dependency
+load_dependency_manager
 
 # Load required dependencies.
 for required_dependency in "${CREATE_ONION_DOMAINS_REQUIRED_DEPS[@]}"; do
