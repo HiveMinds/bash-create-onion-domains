@@ -46,7 +46,7 @@ function ensure_onion_domain_is_created_by_starting_tor() {
   kill_tor_if_already_running
   assert_tor_is_not_running
   NOTICE "TOR_SERVICE_DIR=$TOR_SERVICE_DIR"
-  NOTICE "TOR_LOG_FILEPATH=$TOR_LOG_FILEPATH"
+  NOTICE "TOR_LOG_FILENAME=$TOR_LOG_FILENAME"
 
   # TODO: include max_tor_wait_time as parameter
   local wait_time_sec=260
@@ -55,8 +55,8 @@ function ensure_onion_domain_is_created_by_starting_tor() {
   NOTICE "Now starting tor, and waiting (max) $wait_time_sec seconds to generate onion url locally."
 
   # Start "sudo tor" in the background
-  sudo tor | tee "$TOR_LOG_FILEPATH" >/dev/null &
-  NOTICE "Started tor in the background. You can inspect the log file at:$TOR_LOG_FILEPATH"
+  sudo tor | tee "$TOR_LOG_FILENAME" >/dev/null &
+  NOTICE "Started tor in the background. You can inspect the log file at:$TOR_LOG_FILENAME"
 
   # Set the start time of the function
   local start_time
