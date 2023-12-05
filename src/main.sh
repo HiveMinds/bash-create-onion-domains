@@ -3,10 +3,13 @@ export bash_create_onion_domains_is_loaded=true
 
 # Store arguments and then consume them to prevent the $@ argument from being
 # parsed in the wrong parser that is loaded through another main.sh file.
+echo "BEFORE in CLI_ARGS_CREATE_ONION_DOMAINS=$@"
 CLI_ARGS_CREATE_ONION_DOMAINS=("$@")
 while [ "$#" -gt 0 ]; do
   shift # Shift the arguments to move to the next one
 done
+echo "AFTER in CLI_ARGS_CREATE_ONION_DOMAINS=$@"
+echo "CLI_ARGS_CREATE_ONION_DOMAINS=$CLI_ARGS_CREATE_ONION_DOMAINS"
 
 # This module is a dependency for:
 CREATE_ONION_DOMAINS_PARENT_DEPS=("bash-ssh-over-tor")
@@ -72,4 +75,5 @@ function load_functions() {
 
 }
 load_functions
+echo "Before call:${CLI_ARGS_CREATE_ONION_DOMAINS[@]}"
 setup_onion_domain "${CLI_ARGS_CREATE_ONION_DOMAINS[@]}"
