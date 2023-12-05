@@ -3,7 +3,7 @@
 load 'libs/bats-support/load'
 load 'libs/bats-assert/load'
 
-source dependencies/bash-log/src/main.sh
+source "$REPO_ROOT_PATH/"/bash-log/src/main.sh
 LOG_LEVEL_ALL
 
 # Load the script that contains the function to be tested
