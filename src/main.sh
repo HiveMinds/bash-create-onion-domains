@@ -1,5 +1,6 @@
 #!/bin/bash
-export bash_create_onion_domains_is_loaded=true
+# shellcheck disable=SC2034
+bash_create_onion_domains_is_loaded=true
 
 # Store arguments and then consume them to prevent the $@ argument from being
 # parsed in the wrong parser that is loaded through another main.sh file.
