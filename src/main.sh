@@ -44,7 +44,6 @@ done
 LOG_LEVEL_ALL # set log level to all, otherwise, NOTICE, INFO, DEBUG, TRACE will not be logged.
 B_LOG --file log/multiple-outputs.txt --file-prefix-enable --file-suffix-enable
 
-NOTICE "Loading from:$CREATE_ONION_DOMAINS_SRC_PATH"
 # Load prerequisites installation.
 function load_functions() {
 
