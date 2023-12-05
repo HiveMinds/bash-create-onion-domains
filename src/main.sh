@@ -1,5 +1,13 @@
 #!/bin/bash
 export bash_create_onion_domains_is_loaded=true
+
+# Store arguments and then consume them to prevent the $@ argument from being
+# parsed in the wrong parser that is loaded through another main.sh file.
+CLI_ARGS_CREATE_ONION_DOMAINS=("$@")
+while [ "$#" -gt 0 ]; do
+  shift # Shift the arguments to move to the next one
+done
+
 # This module is a dependency for:
 CREATE_ONION_DOMAINS_PARENT_DEPS=("bash-ssh-over-tor")
 # This module has dependencies:
@@ -36,13 +44,6 @@ done
 
 LOG_LEVEL_ALL # set log level to all, otherwise, NOTICE, INFO, DEBUG, TRACE will not be logged.
 B_LOG --file log/multiple-outputs.txt --file-prefix-enable --file-suffix-enable
-
-# Store arguments and then consume them to prevent the $@ argument from being
-# parsed in the wrong parser that is loaded through another main.sh file.
-CLI_ARGS_CREATE_ONION_DOMAINS=("$@")
-while [ "$#" -gt 0 ]; do
-  shift # Shift the arguments to move to the next one
-done
 
 # Load prerequisites installation.
 function load_functions() {
