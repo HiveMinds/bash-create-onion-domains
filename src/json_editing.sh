@@ -96,7 +96,8 @@ function add_or_update_project_in_json() {
   actual_merged_json="$(add_or_overwrite_torrc_json_project "$existing_json" "$new_torrc_json_project")"
   assert_is_non_empty_string "$actual_merged_json"
 
-  echo "$actual_merged_json" >"$torrc_json_output_path"
+  # sudo echo "$actual_merged_json" >"$torrc_json_output_path"
+  echo "$actual_merged_json" | sudo tee "$torrc_json_output_path" >/dev/null
   #sudo sh -c "echo \"$actual_merged_json\" > \"$torrc_json_output_path\""
 
   manual_assert_file_exists "$torrc_json_output_path"
