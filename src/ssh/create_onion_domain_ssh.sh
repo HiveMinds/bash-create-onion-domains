@@ -54,8 +54,8 @@ function ensure_onion_domain_is_created_by_starting_tor() {
   local onion_domain
   NOTICE "Now starting tor, and waiting (max) $wait_time_sec seconds to generate onion url locally."
 
-  # Start "sudo tor" in the background
-  sudo tor | tee "$TOR_LOG_FILENAME" >/dev/null &
+  # Start "tor" in the background
+  tor | tee "$TOR_LOG_FILENAME" >/dev/null &
   NOTICE "Started tor in the background. You can inspect the log file at:$TOR_LOG_FILENAME"
 
   # Set the start time of the function
@@ -68,12 +68,12 @@ function ensure_onion_domain_is_created_by_starting_tor() {
     onion_exists=$(check_onion_url_exists_in_hostname "$project_name")
 
     # Check if the onion URL exists in the hostname
-    if sudo test -f "$TOR_SERVICE_DIR/$project_name/hostname"; then
+    if test -f "$TOR_SERVICE_DIR/$project_name/hostname"; then
       if [[ "$onion_exists" == "FOUND" ]]; then
 
         onion_domain="$(get_onion_domain "$project_name")"
 
-        # If the onion URL exists, terminate the "sudo tor" process and return 0
+        # If the onion URL exists, terminate the "tor" process and return 0
         kill_tor_if_already_running
         NOTICE "Successfully created your onion domain locally. Proceeding.."
         sleep 5
