@@ -58,6 +58,12 @@ function ensure_onion_domain_is_created_by_starting_tor() {
   tor | tee "$TOR_LOG_FILENAME" >/dev/null &
   NOTICE "Started tor in the background. You can inspect the log file at:$TOR_LOG_FILENAME"
 
+  # ensure tor can be started without sudo.
+  sudo chmod 700 -R "$TOR_SERVICE_DIR/*"
+  sudo chown -R "$(whoami)" "$TOR_SERVICE_DIR"
+  read -rp "ran: sudo chmod 700 -R $TOR_SERVICE_DIR/*"
+  read -rp "ran: sudo chown -R $(whoami) $TOR_SERVICE_DIR"
+
   # Set the start time of the function
   local start_time
   start_time=$(date +%s)

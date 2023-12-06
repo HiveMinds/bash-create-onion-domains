@@ -39,6 +39,7 @@ function setup_onion_domain() {
     if [ "$get_onion_domain" == "true" ]; then
       get_onion_domain "ssh"
     fi
+
   fi
 
   if [ "$setup_dash_service" == "true" ]; then
