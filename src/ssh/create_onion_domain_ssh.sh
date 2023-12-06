@@ -55,14 +55,13 @@ function ensure_onion_domain_is_created_by_starting_tor() {
   NOTICE "Now starting tor, and waiting (max) $wait_time_sec seconds to generate onion url locally."
 
   # Start "tor" in the background
-  tor | tee "$TOR_LOG_FILENAME" >/dev/null &
-  NOTICE "Started tor in the background. You can inspect the log file at:$TOR_LOG_FILENAME"
 
+  tor | tee "$TOR_LOG_FILENAME" >/dev/null &
   normal_username="$(whoami)"
   assert_is_non_empty_string "$normal_username"
-  # ensure tor can be started without sudo.
   sudo chmod 700 -R "$TOR_SERVICE_DIR/"
   sudo chown -R "$normal_username" "$TOR_SERVICE_DIR"
+  NOTICE "Started tor in the background. You can inspect the log file at:$TOR_LOG_FILENAME"
 
   # Set the start time of the function
   local start_time
@@ -106,6 +105,8 @@ function ensure_onion_domain_is_created_by_starting_tor() {
       exit 6
     fi
 
+    # Start tor again in the back ground, in case it did not start the first time.
+    tor | tee "$TOR_LOG_FILENAME" >/dev/null &
     # Wait for 5 seconds before checking again
     sleep 5
   done
