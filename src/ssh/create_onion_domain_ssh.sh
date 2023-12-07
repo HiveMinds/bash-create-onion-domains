@@ -46,7 +46,7 @@ function restore_previous_onion_domain_for_ssh() {
 
 function ensure_onion_domain_is_created_by_starting_tor() {
   local project_name="$1"
-  kill_tor_if_already_running
+  kill_tor_if_already_running "$SOCKS_PORT"
   assert_tor_is_not_running
   NOTICE "TOR_SERVICE_DIR=$TOR_SERVICE_DIR"
   NOTICE "TOR_LOG_FILENAME=$TOR_LOG_FILENAME"
