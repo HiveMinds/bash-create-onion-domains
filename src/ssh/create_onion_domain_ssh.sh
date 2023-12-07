@@ -82,7 +82,7 @@ function ensure_onion_domain_is_created_by_starting_tor() {
         onion_domain="$(get_onion_domain "$project_name")"
 
         # If the onion URL exists, terminate the "tor" process and return 0
-        kill_tor_if_already_running
+        kill_tor_if_already_running "$SOCKS_PORT"
         NOTICE "Successfully created your onion domain locally. Proceeding.."
         sleep 5
 
@@ -103,7 +103,7 @@ function ensure_onion_domain_is_created_by_starting_tor() {
 
     # If 2 minutes have passed, raise an exception and return 7
     if ((elapsed_time > wait_time_sec)); then
-      kill_tor_if_already_running
+      kill_tor_if_already_running "$SOCKS_PORT"
       ERROR "Error: Onion URL:$onion_domain does not exist in hostname after $wait_time_sec seconds."
       exit 6
     fi
