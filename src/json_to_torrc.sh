@@ -59,6 +59,8 @@ function write_json_to_torrc() {
   # echo "$torrc_content" >"$torrc_output_filepath"
   echo "$torrc_content" | sudo tee "$torrc_output_filepath" >/dev/null
   #sudo sh -c "echo \"$torrc_content\" > \"$torrc_output_filepath\""
+  # Set the socksport.
+  echo "SocksPort $SOCKS_PORT" >>"$torrc_output_filepath"
 
   manual_assert_file_exists "$torrc_output_filepath"
   NOTICE "Wrote torrc_content to $torrc_output_filepath"
