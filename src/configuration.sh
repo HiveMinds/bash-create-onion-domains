@@ -15,7 +15,6 @@ function setup_onion_domain() {
   # Check if a CLI argument is given.
   found_non_empty_string=false
   for arg in "${parsed_args[@]}"; do
-    echo "SOME ARG=$arg"
     if [ -n "$arg" ]; then
       found_non_empty_string=true
       break
