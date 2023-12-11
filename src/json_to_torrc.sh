@@ -58,6 +58,7 @@ function write_json_to_torrc() {
 
   # Set the socksport.
   #echo "SocksPort $SOCKS_PORT" | sudo tee "$torrc_output_filepath" >/dev/null
+  # echo "$torrc_content" | sudo tee -a "$torrc_output_filepath" >/dev/null # The a is for append.
   echo "$torrc_content" | sudo tee -a "$torrc_output_filepath" >/dev/null
 
   manual_assert_file_exists "$torrc_output_filepath"

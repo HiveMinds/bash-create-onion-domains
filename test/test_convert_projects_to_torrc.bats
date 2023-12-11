@@ -3,8 +3,8 @@
 load 'libs/bats-support/load'
 load 'libs/bats-assert/load'
 
-source "$REPO_ROOT_PATH/"/bash-log/src/main.sh
-source "$REPO_ROOT_PATH/"/bash-ssh-over-tor/src/main.sh
+source dependencies/bash-log/src/main.sh
+source dependencies/bash-ssh-over-tor/src/main.sh
 LOG_LEVEL_ALL
 
 # Load the function that is to be tested.

@@ -26,7 +26,7 @@ function create_new_random_onion_domain_for_ssh() {
   # Write torrc json to torrc file.
   write_json_to_torrc "$TORRC_JSON_FILEPATH" "$TORRC_FILEPATH"
 
-  # TODO: ensure tor can be ran without sudo
+  # Ensures tor can be ran without sudo
   set_user_permissions_on_torrc_file_and_json_torrc
 
   ensure_onion_domain_is_created_by_starting_tor "ssh"
