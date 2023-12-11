@@ -44,7 +44,7 @@ EOF
 }
 
 # Describe block for testing the change_color function
-@test "Test add a project to the single_entry json." {
+@test "Test add a new project to the single_entry json." {
 
   # Load the original single json.
   single_json="$(load_json_from_file "test/test_jsons_read/single_entry.json")"

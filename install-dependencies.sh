@@ -10,6 +10,7 @@ git rm --cached "$SCRIPT_PATH/dependencies/bash-package-installer"
 git rm --cached "$SCRIPT_PATH/dependencies/bash-log"
 git rm --cached "$SCRIPT_PATH/dependencies/bash-start-tor-at-boot"
 git rm --cached "$SCRIPT_PATH/dependencies/bash-create-onion-domains"
+git rm --cached "$SCRIPT_PATH/dependencies/bash-ssh-over-tor"
 
 # Remove and re-create the submodule directory.
 rm -r "$SCRIPT_PATH/test/libs"
@@ -27,6 +28,7 @@ git submodule add --force https://github.com/hiveminds/bash-package-installer "$
 git submodule add --force https://github.com/hiveminds/bash-log "$SCRIPT_PATH/dependencies/bash-log"
 git submodule add --force https://github.com/hiveminds/bash-start-tor-at-boot "$SCRIPT_PATH/dependencies/bash-start-tor-at-boot"
 git submodule add --force https://github.com/hiveminds/bash-create-onion-domains "$SCRIPT_PATH/dependencies/bash-create-onion-domains"
+git submodule add --force https://github.com/hiveminds/bash-ssh-over-tor "$SCRIPT_PATH/dependencies/bash-ssh-over-tor"
 git submodule update --remote --recursive
 
 # Remove the submodules from the index.

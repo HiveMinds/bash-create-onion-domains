@@ -12,14 +12,14 @@ LOG_LEVEL_ALL
 source "src/json_editing.sh"
 
 # Describe block for testing the change_color function
-@test "Test add a project to the single_entry json." {
+@test "Test add a single project to the single_entry json." {
 
   # Load the original single json.
   json_input_path="test/test_jsons_read/single_entry.json"
   manual_assert_file_exists "$json_input_path"
   json_output_path="test/test_jsons_write/single_entry.json"
   if [ -f "$json_output_path" ]; then
-    rm "$json_output_path"
+    sudo rm "$json_output_path"
   fi
   manual_assert_file_not_exists "$json_output_path"
 
@@ -62,7 +62,7 @@ EOF
   manual_assert_file_exists "$json_input_path"
   json_output_path="test/test_jsons_write/triple_entry.json"
   if [ -f "$json_output_path" ]; then
-    rm "$json_output_path"
+    sudo rm "$json_output_path"
   fi
   manual_assert_file_not_exists "$json_output_path"
 
